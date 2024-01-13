@@ -27,7 +27,7 @@ const TextboxQuestion = ({
       <Textarea
         placeholder={placeholder}
         id="message"
-        className="border-2"
+        className="border-2 dark:bg-black/10 dark:text-white"
         defaultValue={answerValue} // Utilize defaultValue para exibir o valor inicial
       />
     </div>

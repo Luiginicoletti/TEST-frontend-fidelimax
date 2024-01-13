@@ -8,6 +8,7 @@ import Main from "@/components/Main";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,11 +24,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${poppins.className} bg-light-background`}>
-        <Navbar />
-        <Hero />
-        <Main />
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <Hero />
+          <Main />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

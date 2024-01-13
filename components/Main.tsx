@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
-import LoadingSpinner from "../utils/LoadingSpinner";
-
+const Card = React.lazy(() => import("./Card"));
 type Item = {
   typeQuestion: number;
   answerValue?: number;
@@ -20,7 +18,6 @@ type Data = {
 
 const Main: React.FC = () => {
   const [data, setData] = useState<Data | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,13 +35,11 @@ const Main: React.FC = () => {
         setData(jsonData);
       } catch (error) {
         setData(null);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchData();
-  }, []); // O array vazio garante que o efeito só é executado uma vez, sem dependências
+  }, []);
 
   return (
     <div className="my-[-192px] flex items-center justify-center">
@@ -52,9 +47,7 @@ const Main: React.FC = () => {
         <h1 className="text-2xl font-semibold text-light-white md:text-3xl lg:text-4xl">
           Pesquisa de Satisfação
         </h1>
-        <div className="">
-          {loading ? <LoadingSpinner /> : data && <Card surveyData={data} />}
-        </div>
+        {data && <Card surveyData={data} />}
       </div>
     </div>
   );

@@ -25,7 +25,9 @@ const StarsRating = ({
   };
 
   return (
-    <div className={`${marginTop} mt-4 flex flex-wrap gap-2 sm:justify-start`}>
+    <div
+      className={`${marginTop} mt-4 flex flex-wrap justify-center gap-2 sm:justify-start`}
+    >
       {Array(5)
         .fill(0)
         .map((_, index) => (

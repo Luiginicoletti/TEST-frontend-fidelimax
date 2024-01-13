@@ -15,11 +15,11 @@ const FormSection: React.FC<FormSectionProps> = ({
   marginTop,
 }) => {
   return (
-    <div className={`${marginTop}`}>
-      <h1 className="mb-2 text-xl font-semibold text-light-blue md:text-2xl">
+    <div className={`${marginTop} `}>
+      <h1 className="mb-2 text-xl font-semibold text-light-blue dark:bg-light-blue dark:text-white md:text-2xl">
         {title}
       </h1>
-      <h2 className="text-[12px] font-medium leading-6 text-light-gray md:text-[14px]">
+      <h2 className="text-[12px] font-medium leading-6 text-light-gray dark:bg-light-blue dark:text-gray-300 md:text-[14px]">
         {description}
       </h2>
       {children}

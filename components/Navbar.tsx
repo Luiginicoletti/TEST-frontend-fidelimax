@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
   return (
-    <div className=" flex w-full items-center justify-between bg-light-blue px-8 py-4">
+    <div className="flex w-full items-center justify-between bg-light-blue px-8 py-4 dark:bg-light-gray dark:text-white">
       <div className="flex gap-3">
         <Image alt="Menu Hamberguer" src="/menu.svg" width={24} height={24} />
 
@@ -16,9 +17,11 @@ const Navbar = () => {
         />
       </div>
       <div className="flex items-center justify-center gap-4 text-light-white">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-light-gray font-semibold">
+        <ModeToggle />
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-light-gray  font-semibold dark:bg-gray-500">
           F
         </div>
+
         <div className="hidden  sm:block">Fabio C Pinto</div>
         <Image
           className="hidden sm:block"
