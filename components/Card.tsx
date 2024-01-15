@@ -1,8 +1,21 @@
 "use client";
 
-import React, { Suspense } from "react";
+import axios from "axios";
+
+import React, { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WaitSkeleton from "@/utils/WaitSkeleton";
+
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 // Importe StarsRating, RadioRating e outros componentes aqui usando React.lazy
 const StarsRating = React.lazy(() => import("./form/StarsRating"));
@@ -40,11 +53,52 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ surveyData }) => {
-  console.log("Dados recebidos no Card:", surveyData);
-
   const { itens } = surveyData;
 
-  console.log(itens);
+  const [errorModalData, setErrorModalData] = useState();
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
+
+  const enviarErro = async () => {
+    const response = await fetch(
+      "https://fdlmx-backgrounds.sfo3.digitaloceanspaces.com/front-test/survey-post-error.json"
+    );
+    const data = await response.json();
+
+    setErrorModalData(data.error);
+  };
+
+  const enviarSuccess = async () => {
+    try {
+      const response = await fetch(
+        "https://fdlmx-backgrounds.sfo3.digitaloceanspaces.com/front-test/survey-post-success.json"
+      );
+
+      const data = await response.json();
+      console.log(data);
+      setErrorModalData(data.error);
+    } catch (error) {
+      console.error("Erro ao enviar solicitação:", error);
+      // Trate o erro, se necessário
+    }
+  };
+
+  const enviarFakePost = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://jsonplaceholder.typicode.com/posts/"
+      );
+
+      if (response.status === 201) {
+        alert("Formulário enviado com sucesso!");
+      } else {
+        alert("Erro ao enviar o formulário. Tente novamente.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar o formulário:", error);
+      alert("Erro ao enviar o formulário. Tente novamente.");
+    }
+  };
 
   return (
     <div className="flex flex-col rounded-2xl bg-light-white  p-8 dark:bg-light-blue dark:text-white">
@@ -133,17 +187,54 @@ const Card: React.FC<CardProps> = ({ surveyData }) => {
               content={item.content}
             />
           ))}
-          <Button className="mt-10 w-full py-6 font-bold text-black shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3">
-            Enviar
-          </Button>
+
           <div className="mt-10 flex w-full flex-col justify-center gap-2 md:flex-row">
-            <Button className="bg-emerald-600 py-6 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3">
+            {/* <Button className="btn  py-6 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3">
               Enviar Sucesso
-            </Button>
-            <Button className="bg-orange-400 py-6 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3">
-              Enviar Erro
-            </Button>
-            <Button className="bg-rose-500 py-6 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3">
+            </Button> */}
+
+            <Dialog>
+              <DialogTrigger
+                onClick={enviarSuccess}
+                className="btn flex items-center justify-center rounded-full bg-emerald-600 py-3 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3"
+              >
+                Enviar Sucesso
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Status</DialogTitle>
+                  <DialogDescription>
+                    <div className="grid flex-1 gap-2">
+                      <h1>Enviado com sucesso! </h1>
+                    </div>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog>
+              <DialogTrigger
+                onClick={enviarErro}
+                className="btn flex items-center justify-center rounded-full bg-light-yellow py-3 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3"
+              >
+                Enviar Erro
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Status</DialogTitle>
+                  <DialogDescription>
+                    <div className="grid flex-1 gap-2">
+                      <pre>{JSON.stringify(errorModalData, null, 2)}</pre>
+                    </div>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+
+            <Button
+              onClick={enviarFakePost}
+              className="btn bg-rose-500 py-6 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3"
+            >
               Enviar Fake Post
             </Button>
           </div>
