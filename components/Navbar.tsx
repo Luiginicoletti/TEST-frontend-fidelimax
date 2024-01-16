@@ -2,11 +2,36 @@ import Image from "next/image";
 import React from "react";
 import { ModeToggle } from "./ModeToggle";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 const Navbar = () => {
   return (
     <div className="flex w-full items-center justify-between bg-light-blue px-8 py-4 dark:bg-light-gray dark:text-white">
       <div className="flex gap-3">
-        <Image alt="Menu Hamberguer" src="/menu.svg" width={24} height={24} />
+        <Sheet>
+          <SheetTrigger>
+            <Image
+              alt="Menu Hamberguer"
+              src="/menu.svg"
+              width={24}
+              height={24}
+              className="hover:scale-105"
+            />
+          </SheetTrigger>
+          <SheetContent side={"left"}>
+            <SheetHeader>
+              <SheetTitle>Ola!</SheetTitle>
+              <SheetDescription>Under construction</SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
 
         <Image
           className="hidden sm:block"

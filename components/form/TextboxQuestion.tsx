@@ -9,6 +9,7 @@ interface TextboxQuestionProps {
   answerValue?: string;
   mandatory?: boolean;
   content?: string;
+  rows?: number;
 }
 
 const TextboxQuestion = ({
@@ -18,6 +19,7 @@ const TextboxQuestion = ({
   answerValue,
   mandatory,
   content,
+  rows,
 }: TextboxQuestionProps) => {
   return (
     <div className={`${marginTop} grid w-full gap-1.5`}>
@@ -27,8 +29,9 @@ const TextboxQuestion = ({
       <Textarea
         placeholder={placeholder}
         id="message"
-        className="border-2 dark:bg-black/10 dark:text-white"
-        defaultValue={answerValue} // Utilize defaultValue para exibir o valor inicial
+        className="resize-none border-2 dark:bg-black/10 dark:text-white"
+        defaultValue={answerValue}
+        rows={rows}
       />
     </div>
   );

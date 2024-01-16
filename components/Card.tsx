@@ -1,21 +1,21 @@
 "use client";
 
+import { useToast } from "@/components/ui/use-toast";
+
 import axios from "axios";
 
 import React, { Suspense, useState } from "react";
-import { Button } from "@/components/ui/button";
 import WaitSkeleton from "@/utils/WaitSkeleton";
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Button } from "./ui/button";
 
 // Importe StarsRating, RadioRating e outros componentes aqui usando React.lazy
 const StarsRating = React.lazy(() => import("./form/StarsRating"));
@@ -53,10 +53,10 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ surveyData }) => {
+  const { toast } = useToast();
   const { itens } = surveyData;
 
   const [errorModalData, setErrorModalData] = useState();
-  const [successModalOpen, setSuccessModalOpen] = useState(false);
 
   const enviarErro = async () => {
     const response = await fetch(
@@ -74,34 +74,43 @@ const Card: React.FC<CardProps> = ({ surveyData }) => {
       );
 
       const data = await response.json();
-      console.log(data);
+
       setErrorModalData(data.error);
     } catch (error) {
       console.error("Erro ao enviar solicitação:", error);
-      // Trate o erro, se necessário
     }
   };
 
   const enviarFakePost = async (event: React.FormEvent) => {
-    event.preventDefault();
     try {
+      event.preventDefault();
       const response = await axios.post(
         "https://jsonplaceholder.typicode.com/posts/"
       );
 
       if (response.status === 201) {
-        alert("Formulário enviado com sucesso!");
+        toast({
+          title: "Parabens!",
+          description: "Formulário enviado com sucesso!",
+        });
       } else {
-        alert("Erro ao enviar o formulário. Tente novamente.");
+        toast({
+          variant: "destructive",
+          title: "Ops!",
+          description: "Erro ao enviar o formulário. Tente novamente.",
+        });
       }
     } catch (error) {
-      console.error("Erro ao enviar o formulário:", error);
-      alert("Erro ao enviar o formulário. Tente novamente.");
+      toast({
+        variant: "destructive",
+        title: "Ops!",
+        description: "Erro ao enviar o formulário. Tente novamente.",
+      });
     }
   };
 
   return (
-    <div className="flex flex-col rounded-2xl bg-light-white  p-8 dark:bg-light-blue dark:text-white">
+    <div className="flex flex-col rounded-2xl bg-light-white px-8 dark:bg-light-blue dark:text-white">
       <Suspense fallback={<WaitSkeleton />}>
         <form>
           {surveyData.itens.map((item, index) => {
@@ -185,14 +194,11 @@ const Card: React.FC<CardProps> = ({ surveyData }) => {
               answerValue={String(item.answerValue || "")}
               mandatory={item.mandatory}
               content={item.content}
+              rows={7}
             />
           ))}
 
-          <div className="mt-10 flex w-full flex-col justify-center gap-2 md:flex-row">
-            {/* <Button className="btn  py-6 font-bold text-white shadow-custom dark:shadow-md dark:shadow-yellow-300/20 md:flex md:w-1/3">
-              Enviar Sucesso
-            </Button> */}
-
+          <div className="my-10 flex w-full flex-col justify-center gap-2 md:flex-row">
             <Dialog>
               <DialogTrigger
                 onClick={enviarSuccess}
