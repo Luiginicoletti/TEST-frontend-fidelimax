@@ -36,7 +36,7 @@ const TextboxQuestion = ({
       <Textarea
         placeholder={placeholder}
         id="message"
-        className="resize-none border-2 placeholder:font-medium dark:bg-black/10 dark:text-white"
+        className="resize-none border-2 placeholder:font-medium dark:border-light-gray dark:bg-black/10 dark:text-white"
         defaultValue={answerValue}
         rows={rows}
       />

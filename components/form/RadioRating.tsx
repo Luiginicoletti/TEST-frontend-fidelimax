@@ -20,6 +20,7 @@ const RadioRating = ({ marginTop }: RadioRatingProps) => {
               <RadioGroupItem
                 value={`option-${index + 1}`}
                 id={`option-${index + 1}`}
+                className="border-2 dark:border-light-gray"
               />
               <label
                 htmlFor={`option-${index + 1}`}

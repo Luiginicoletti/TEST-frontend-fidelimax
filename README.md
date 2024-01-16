@@ -65,4 +65,12 @@ Certifique-se de que o backend esteja funcionando corretamente para garantir o c
 Contato
 Para qualquer dúvida ou esclarecimento, entre em contato com seu-nome.
 
+## EXTRA FEATURES
+
+Menu Hamburguer
+Darkmode
+Toasters alert
+And more using shadcn/radix
+
+Eslint/Prettier for tailwind.
 _Este projeto foi desenvolvido como parte do teste prático para a vaga de Front End na Fidelimax._

@@ -40,7 +40,7 @@ const PopoverQuestion = ({ marginTop, lojas = [] }: PopoverQuestionProps) => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between rounded-md py-6 font-medium text-light-lightgray dark:bg-black/10 dark:text-white"
+            className="w-full justify-between rounded-md border-2 py-6 font-medium text-light-lightgray dark:border-light-gray dark:bg-black/10 dark:text-white"
           >
             {value
               ? lojas.find((loja) => loja.value.toString() === value)
@@ -49,7 +49,7 @@ const PopoverQuestion = ({ marginTop, lojas = [] }: PopoverQuestionProps) => {
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="p-0">
+        <PopoverContent className="p-0 ">
           <Command>
             <CommandInput
               className=""
