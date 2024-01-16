@@ -44,7 +44,7 @@ const Main: React.FC = () => {
   return (
     <div className="my-[-192px] flex items-center justify-center">
       <div className="flex w-2/3 max-w-[648px] flex-col justify-start gap-6">
-        <h1 className="text-2xl font-semibold text-light-white md:text-3xl lg:text-4xl">
+        <h1 className="text-2xl font-semibold text-light-white md:text-4xl lg:text-4xl">
           Pesquisa de Satisfação
         </h1>
         {data && <Card surveyData={data} />}

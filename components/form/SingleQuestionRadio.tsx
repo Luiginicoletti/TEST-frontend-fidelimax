@@ -21,7 +21,7 @@ const SingleQuestionRadio = ({
     <div className={`${marginTop}`}>
       <Label className="mt-10 text-[16px]">{questionData.content}</Label>
       <RadioGroup
-        className="mt-3 flex gap-4"
+        className="mt-1 flex gap-4"
         defaultValue={questionData.answerValue?.toString()}
       >
         {questionData.itens?.map((item) => (

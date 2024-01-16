@@ -40,7 +40,7 @@ const PopoverQuestion = ({ marginTop, lojas = [] }: PopoverQuestionProps) => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between rounded-md font-medium text-light-lightgray dark:bg-black/10 dark:text-white"
+            className="w-full justify-between rounded-md py-6 font-medium text-light-lightgray dark:bg-black/10 dark:text-white"
           >
             {value
               ? lojas.find((loja) => loja.value.toString() === value)

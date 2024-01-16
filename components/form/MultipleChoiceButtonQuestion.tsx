@@ -31,14 +31,14 @@ const MultipleChoiceButtonQuestion = ({
 
   return (
     <div className={`${marginTop}`}>
-      <Label className={`mt-10 text-[16px]`}>{content}</Label>
+      <label className={`mb-2 mt-10 text-[16px] `}>{content}</label>
       <div className={`flex-wrap ${horizontal ? "flex-wrap" : ""}`}>
         {itens?.map((item) => (
           <button
             key={item.value}
             type="button"
             onClick={() => handleItemClick(item.value)}
-            className={`m-1  rounded-full border p-1 px-4 font-normal hover:bg-gray-100 ${
+            className={`my-2 mr-2 rounded-full border p-1 px-4 font-normal hover:bg-gray-100${
               selectedItems.includes(item.value) ? "bg-light-yellow" : ""
             }`}
           >

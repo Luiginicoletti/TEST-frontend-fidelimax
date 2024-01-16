@@ -15,7 +15,7 @@ const MultipleChoiceCheckQuestion = ({
       <Label className="text-[16px]">Pergunta de múltipla escolha?</Label>
 
       {itemsCheck.map((item) => (
-        <div key={item.id} className="mb-4 flex items-center space-x-4">
+        <div key={item.id} className="mb-2 flex items-center space-x-4">
           <Checkbox id={`checkbox-${item.id}`} />
           <div className="">
             <label

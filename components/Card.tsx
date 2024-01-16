@@ -118,7 +118,7 @@ const Card: React.FC<CardProps> = ({ surveyData }) => {
                 return (
                   <FormSection
                     key={index}
-                    marginTop="mt-10"
+                    marginTop="mt-8"
                     title="Título da pergunta deve ficar aqui"
                     description={item.content}
                   >
@@ -145,9 +145,11 @@ const Card: React.FC<CardProps> = ({ surveyData }) => {
                 return (
                   <TextboxQuestion
                     key={index}
+                    rows={4}
                     marginTop="mt-10"
                     placeholder="Digite aqui..."
-                    label={`${item.content} (opcional)`}
+                    label={item.content}
+                    optional={!item.mandatory}
                   />
                 );
 
@@ -191,9 +193,9 @@ const Card: React.FC<CardProps> = ({ surveyData }) => {
               placeholder="Digite aqui..."
               label={item.content}
               answerValue={String(item.answerValue || "")}
-              mandatory={item.mandatory}
               content={item.content}
               rows={7}
+              optional={item.mandatory}
             />
           ))}
 
