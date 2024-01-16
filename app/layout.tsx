@@ -8,7 +8,7 @@ import Main from "@/components/Main";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/utils/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({

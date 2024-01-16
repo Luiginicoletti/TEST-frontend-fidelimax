@@ -1,4 +1,4 @@
-import { itemsCheck } from "@/utils/stores";
+import { itemsCheck } from "@/utils/checkbox";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@radix-ui/react-label";
 import React from "react";

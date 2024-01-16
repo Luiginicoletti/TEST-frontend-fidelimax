@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "./ui/ModeToggle";
 
 import {
   Sheet,

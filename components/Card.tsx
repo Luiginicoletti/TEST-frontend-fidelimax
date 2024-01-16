@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 
-// Importe StarsRating, RadioRating e outros componentes aqui usando React.lazy
 const StarsRating = React.lazy(() => import("./form/StarsRating"));
 const RadioRating = React.lazy(() => import("./form/RadioRating"));
 const SingleQuestionRadio = React.lazy(

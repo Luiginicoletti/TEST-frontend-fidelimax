@@ -9,7 +9,7 @@ interface SingleQuestionRadioProps {
     content: string;
     mandatory: boolean;
     answerValue?: number;
-    itens?: { value: number; description: string }[]; // Tornando 'itens' opcional
+    itens?: { value: number; description: string }[];
   };
 }
 

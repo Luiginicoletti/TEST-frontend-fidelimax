@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/command";
 
 import { cn } from "@/lib/utils";
-import { stores } from "@/utils/stores";
+
 import {
   Popover,
   PopoverTrigger,

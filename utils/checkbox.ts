@@ -1,26 +1,3 @@
-export const stores = [
-  {
-    value: "sp",
-    label: "São Paulo",
-  },
-  {
-    value: "rj",
-    label: "Rio de Janeiro",
-  },
-  {
-    value: "ba",
-    label: "Bahia",
-  },
-  {
-    value: "mg",
-    label: "Minas Gerais",
-  },
-  {
-    value: "rs",
-    label: "Rio Grande do Sul",
-  },
-];
-
 export const itemsCheck = [
   {
     id: "1",
